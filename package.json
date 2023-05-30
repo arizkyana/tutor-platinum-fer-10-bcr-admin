@@ -11,6 +11,7 @@
     "dayjs": "^1.11.7",
     "eslint": "^7.32.0 || ^8.2.0",
     "eslint-config-prettier": "^8.8.0",
+    "nanoid": "^4.0.2",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
@@ -25,7 +26,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:fix": "eslint --cache --fix \"src/**/*.{js,jsx,ts,tsx}\""
+    "lint": "eslint --cache --fix \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "eslintConfig": {
     "extends": [

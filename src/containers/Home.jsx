@@ -13,7 +13,12 @@ function Home() {
             <Button type="button">Example</Button>
           </Link>
         </Col>
-        <Col>Cart</Col>
+        <Col>
+          <h3>Cart</h3>
+          <Link to="/cart/products">
+            <Button type="button">Example</Button>
+          </Link>
+        </Col>
         <Col>Auth</Col>
       </Row>
     </Container>
