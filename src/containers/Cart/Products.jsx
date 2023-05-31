@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Navbar,
   Container,
@@ -125,17 +125,6 @@ function Products() {
   const handleRemove = (item) => {
     dispatch(remove(item));
   };
-
-  useEffect(() => {
-    if (carts && carts.length > 0) {
-      // const findCartItem = carts.findIndex(
-      //   (cartItem) => cartItem.id === item.id
-      // );
-      console.log('carts > ', carts);
-      // console.log('findCartItem > ', findCartItem);
-      // setIsExist(findCartItem);
-    }
-  }, [carts]);
 
   const isAddedToCart = (cartItem) => {
     const findCartItem = carts.findIndex((item) => item.id === cartItem.id);
