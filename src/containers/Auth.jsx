@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Auth() {
-  return <div>Auth</div>;
+  return <div>Ini halaman Sign Up</div>;
 }
 
 export default Auth;
