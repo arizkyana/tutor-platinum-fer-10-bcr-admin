@@ -21,6 +21,28 @@ const dataProducts = Array.from({ length: 10 }, (_, index) => ({
   price: Math.floor(Math.random() * 1000),
 }));
 
+function NavbarCart() {
+  const { carts } = useSelector((state) => state.cart);
+  const [showCart, setShowCart] = useState(false);
+  return (
+    <Navbar>
+      <CartsModal show={showCart} onHide={() => setShowCart(false)} />
+      <Container>
+        <Navbar.Brand href="#home">FreshGardenFruit</Navbar.Brand>
+        <Navbar.Toggle />
+        <Navbar.Collapse className="justify-content-end">
+          <Navbar.Text>
+            Cart:{' '}
+            <a href="#" onClick={() => setShowCart(true)}>
+              {carts.length}
+            </a>
+          </Navbar.Text>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
+}
+
 function CartsModal(props) {
   const { carts } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
@@ -116,8 +138,6 @@ function Products() {
   const { carts } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
-  const [showCart, setShowCart] = useState(false);
-
   const handleAddToCart = (item) => {
     dispatch(add(item));
   };
@@ -134,21 +154,7 @@ function Products() {
 
   return (
     <div>
-      <CartsModal show={showCart} onHide={() => setShowCart(false)} />
-      <Navbar>
-        <Container>
-          <Navbar.Brand href="#home">FreshGardenFruit</Navbar.Brand>
-          <Navbar.Toggle />
-          <Navbar.Collapse className="justify-content-end">
-            <Navbar.Text>
-              Cart:{' '}
-              <a href="#" onClick={() => setShowCart(true)}>
-                {carts.length}
-              </a>
-            </Navbar.Text>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+      <NavbarCart />
       <Container>
         <Row className="g-3">
           {dataProducts &&

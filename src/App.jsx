@@ -1,6 +1,5 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Provider as ReduxProvider } from 'react-redux';
 
 // pages
 import AuthPage from './pages/auth';
@@ -8,9 +7,6 @@ import CartPage from './pages/cart/cart';
 import ProductsPage from './pages/cart/products';
 import TodoPage from './pages/todo';
 import HomePage from './pages/home';
-
-// redux store
-import store from './redux/store';
 
 function App() {
   const router = createBrowserRouter([
@@ -36,11 +32,7 @@ function App() {
     },
   ]);
 
-  return (
-    <ReduxProvider store={store}>
-      <RouterProvider router={router} />
-    </ReduxProvider>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

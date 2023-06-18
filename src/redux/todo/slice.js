@@ -9,7 +9,9 @@ export const todoSlice = createSlice({
   },
   reducers: {
     setTodoItem(state, action) {
-      state.todoItem = { ...action.payload };
+      state.todoItem = {
+        ...action.payload,
+      };
     },
     add: (state, action) => {
       const currentTodos = [...state.todos];

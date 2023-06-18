@@ -19,7 +19,12 @@ function Home() {
             <Button type="button">Example</Button>
           </Link>
         </Col>
-        <Col>Auth</Col>
+        <Col>
+          <h3>Auth</h3>
+          <Link to="/auth">
+            <Button type="button">Example</Button>
+          </Link>
+        </Col>
       </Row>
     </Container>
   );

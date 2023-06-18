@@ -5,7 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { add, remove, update, setTodoItem } from '../redux/todo/slice';
 
 function FormModal(props) {
-  const { mode = 'create', initialValues, onSubmit, onHide, show } = props;
+  const { todos, todoItem: initialValues } = useSelector((state) => state.todo);
+  const dispatch = useDispatch();
+
+  const { mode = 'create', onHide, show } = props;
   const [formValues, setFormValues] = useState({
     title: null,
     description: null,
@@ -13,6 +16,7 @@ function FormModal(props) {
 
   useEffect(() => {
     if (initialValues && initialValues.title) {
+      console.log('masih ada initialValues dari useSelector');
       setFormValues(initialValues);
     }
   }, [initialValues]);
@@ -29,14 +33,29 @@ function FormModal(props) {
       <Modal.Header closeButton>
         <Modal.Title>
           {mode === 'create' ? 'Add New Todo' : 'Update Todo'}
-          {formValues.index}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
+        <div>
+          <h3>Todos Count: {todos.count}</h3>
+        </div>
+        <div>
+          <h3>Initial Values</h3>
+          <pre>{JSON.stringify(initialValues, undefined, 2)}</pre>
+        </div>
+        <div>
+          <h3>Form Values</h3>
+          <pre>{JSON.stringify(formValues, undefined, 2)}</pre>
+        </div>
         <Form
           onSubmit={(e) => {
             e.preventDefault();
-            onSubmit(formValues);
+            if (mode === 'create') {
+              dispatch(add(formValues));
+            } else {
+              dispatch(update(formValues));
+            }
+            onHide();
           }}
           className="p-2"
         >
@@ -75,48 +94,40 @@ function FormModal(props) {
   );
 }
 
+function TodosCount() {
+  const { todos } = useSelector((state) => state.todo);
+  return (
+    <div>
+      <pre>{JSON.stringify(todos, undefined, 2)}</pre>
+      <pre>{JSON.stringify(todos.length, undefined, 2)}</pre>
+      <h3>Count : {todos && todos.length > 0 ? todos.length : 0}</h3>
+    </div>
+  );
+}
+
 function Todo() {
   const [openModalAddForm, setOpenModalAddForm] = useState(false);
   const [openModalEditForm, setOpenModalEditForm] = useState(false);
 
-  const { todos, todoItem } = useSelector((state) => state.todo);
+  const { todos } = useSelector((state) => state.todo);
   const dispatch = useDispatch();
-
-  const onSubmitAdd = (formValues) => {
-    dispatch(
-      add({
-        title: formValues.title,
-        description: formValues.description,
-      })
-    );
-    setOpenModalAddForm(false);
-  };
-
-  const onSubmitUpdate = (formValues) => {
-    dispatch(
-      update({
-        index: formValues.index,
-        title: formValues.title,
-        description: formValues.description,
-      })
-    );
-    setOpenModalEditForm(false);
-  };
 
   return (
     <Container className="py-3">
+      <TodosCount />
       <FormModal
         mode="create"
         show={openModalAddForm}
         onHide={() => setOpenModalAddForm(false)}
-        onSubmit={onSubmitAdd}
       />
       <FormModal
         mode="edit"
         show={openModalEditForm}
-        initialValues={todoItem}
-        onHide={() => setOpenModalEditForm(false)}
-        onSubmit={onSubmitUpdate}
+        // initialValues={todoItem}
+        onHide={() => {
+          setOpenModalEditForm(false);
+          dispatch(setTodoItem({}));
+        }}
       />
 
       <div className="d-flex justify-content-between align-items-center">
