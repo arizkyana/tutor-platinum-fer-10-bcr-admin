@@ -10,7 +10,9 @@ function Home() {
         <Col>
           <h3>Todo</h3>
           <Link to="/todo">
-            <Button type="button">Example</Button>
+            <Button data-testid="button" type="button">
+              Example
+            </Button>
           </Link>
         </Col>
         <Col>
