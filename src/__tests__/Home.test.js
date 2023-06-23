@@ -4,9 +4,7 @@ import { render } from '@testing-library/react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Home from '../containers/Home';
 
-function Sample() {
-  return <div>Sample</div>;
-}
+import Button from '../components/Button';
 
 function AppWrapper() {
   // const {children} = props;

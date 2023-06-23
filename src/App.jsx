@@ -11,6 +11,7 @@ import HomePage from './pages/home';
 
 // redux store
 import store from './redux/store';
+import PaymentPage from './pages/stepper';
 
 function App() {
   const router = createBrowserRouter([
@@ -33,6 +34,10 @@ function App() {
     {
       path: '/auth',
       element: <AuthPage />,
+    },
+    {
+      path: '/payment',
+      element: <PaymentPage />,
     },
   ]);
 
