@@ -8,6 +8,7 @@ import CartPage from './pages/cart/cart';
 import ProductsPage from './pages/cart/products';
 import TodoPage from './pages/todo';
 import HomePage from './pages/home';
+import CounterPage from './pages/counter';
 
 // redux store
 import store from './redux/store';
@@ -38,6 +39,8 @@ function App() {
     {
       path: '/payment',
       element: <PaymentPage />,
+      path: '/counter',
+      element: <CounterPage />,
     },
   ]);
 
