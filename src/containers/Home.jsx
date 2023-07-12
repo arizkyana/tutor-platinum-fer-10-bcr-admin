@@ -10,13 +10,13 @@ function Home() {
         <Col>
           <h3>Todo</h3>
           <Link to="/todo">
-            <Button type="button">Example Test</Button>
+            <Button type="button">Example Ganti dari GitHub</Button>
           </Link>
         </Col>
         <Col>
           <h3>Cart</h3>
           <Link to="/cart/products">
-            <Button type="button">Example</Button>
+            <Button type="button">Example Coba Deploy Ke Vercel</Button>
           </Link>
         </Col>
         <Col>
