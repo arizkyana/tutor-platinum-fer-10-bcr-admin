@@ -10,7 +10,7 @@ function Home() {
         <Col>
           <h3>Todo</h3>
           <Link to="/todo">
-            <Button type="button">Example</Button>
+            <Button type="button">Example Test</Button>
           </Link>
         </Col>
         <Col>
